@@ -1,0 +1,227 @@
+/* ========== MEN'S PAGE LAYOUT ========== */
+.page-layout {
+  display: flex;
+  min-height: calc(100vh - 130px);
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  width: 280px;
+  min-width: 280px;
+  padding: 40px 30px;
+  border-right: 1px solid rgba(255, 255, 255, 0.07);
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-title {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.1;
+  margin-bottom: 35px;
+  text-transform: uppercase;
+}
+
+.sidebar-title span {
+  color: #ff003c;
+}
+
+/* Filter group */
+.filter-group {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 18px 0;
+}
+
+.filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  user-select: none;
+  transition: color 0.3s;
+}
+
+.filter-header:hover {
+  color: #ff003c;
+}
+
+.filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+}
+
+.filter-btn {
+  text-align: left;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.filter-btn:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 0, 60, 0.4);
+}
+
+.filter-btn.active {
+  background: #ff003c;
+  color: white;
+  border-color: #ff003c;
+  font-weight: 600;
+}
+
+/* ========== MAIN CONTENT ========== */
+.main-content {
+  flex: 1;
+  padding: 40px 50px;
+}
+
+.content-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-count {
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.current-filter-tag {
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: #ff003c;
+  font-weight: bold;
+}
+
+/* ========== PRODUCT GRID (CSS GRID) ========== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+/* ========== CARD COMPONENT STYLES ========== */
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: transform 0.35s, box-shadow 0.35s, border-color 0.35s;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7), 0 0 15px rgba(255, 0, 60, 0.15);
+  border-color: rgba(255, 0, 60, 0.3);
+}
+
+.card-image-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 240px;
+}
+
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s;
+}
+
+.card:hover img {
+  transform: scale(1.08);
+}
+
+/* Cart Button */
+.cart-btn {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #ff003c;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background 0.3s, transform 0.2s;
+  z-index: 2;
+}
+
+.cart-btn:hover {
+  background: white;
+  color: black;
+  transform: scale(1.1);
+}
+
+.card-info {
+  padding: 16px;
+}
+
+.card-info h3 {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.card-info p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 10px;
+}
+
+.price {
+  color: #ff003c;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+/* Responsive Grid & Sidebar */
+@media (max-width: 900px) {
+  .page-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    min-width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    padding: 25px 20px;
+  }
+
+  .filter-options {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .main-content {
+    padding: 25px 20px;
+  }
+}

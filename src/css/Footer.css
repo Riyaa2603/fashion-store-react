@@ -1,0 +1,36 @@
+/* ========== FOOTER ========== */
+.site-footer {
+  background: #050505;
+  padding: 50px 20px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+.footer-tagline {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.footer-copy {
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.footer-info {
+  margin-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  padding-top: 15px;
+}
+
+.footer-info p {
+  margin: 3px 0;
+}
+
+.footer-info strong {
+  color: rgba(255, 255, 255, 0.9);
+  letter-spacing: 1px;
+}
