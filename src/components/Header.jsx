@@ -1,48 +1,48 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import "../css/Header.css";
 
-// Header Component
-// Demonstrates: Props (with default value), useState hook, Conditional Rendering, Link from react-router-dom
 function Header({ title = "The Daily Drape" }) {
-  // State variables to control dropdown visibility
+  const navigate = useNavigate();
+  const { cart } = useContext(CartContext);
   const [occasionOpen, setOccasionOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
-  // Toggle Occasion dropdown
   const handleToggleOccasion = () => {
     setOccasionOpen(!occasionOpen);
     setProfileOpen(false);
   };
 
-  // Toggle Profile dropdown
   const handleToggleProfile = () => {
     setProfileOpen(!profileOpen);
     setOccasionOpen(false);
   };
 
-  // Close all open dropdowns
   const handleCloseAll = () => {
     setOccasionOpen(false);
     setProfileOpen(false);
   };
 
+  const handleLogout = () => {
+    localStorage.setItem("loginStatus", "false");
+    handleCloseAll();
+    navigate("/login");
+  };
+
   return (
     <nav className="nav">
-      {/* Brand Title / Logo */}
       <Link to="/" className="nav-logo" onClick={handleCloseAll}>
         <h2>{title}</h2>
       </Link>
 
-      {/* Navigation Links */}
       <div className="nav-links">
         <Link to="/" onClick={handleCloseAll}>Home</Link>
         <Link to="/men" onClick={handleCloseAll}>Men</Link>
-        <Link to="/" onClick={handleCloseAll}>Women</Link>
-        <Link to="/" onClick={handleCloseAll}>Kids</Link>
-        <Link to="/" onClick={handleCloseAll}>Accessories</Link>
+        <Link to="/women" onClick={handleCloseAll}>Women</Link>
+        <Link to="/kids" onClick={handleCloseAll}>Kids</Link>
+        <Link to="/accessories" onClick={handleCloseAll}>Accessories</Link>
 
-        {/* Occasion Dropdown */}
         <div className="dropdown">
           <button 
             type="button" 
@@ -81,17 +81,15 @@ function Header({ title = "The Daily Drape" }) {
             {/* Conditional Rendering */}
             {profileOpen && (
               <div className="profile-menu">
-                <Link to="/login" onClick={handleCloseAll}>🔑 Login</Link>
-                <Link to="/login" onClick={handleCloseAll}>📝 Register</Link>
+                <div style={{ padding: "10px 16px", fontSize: "12px", borderBottom: "1px solid rgba(255,255,255,0.08)", color: "rgba(255, 255, 255, 0.7)" }}>
+                  Hello, <strong style={{ color: "#ff003c" }}>{localStorage.getItem("savedName") || "User"}</strong>
+                </div>
+                <Link to="/profile" onClick={handleCloseAll}>👤 My Profile</Link>
                 <div className="divider"></div>
-                <Link to="/login" onClick={handleCloseAll}>👤 My Profile</Link>
                 <button 
                   type="button"
                   className="profile-menu-link logout-btn"
-                  onClick={() => {
-                    alert("Logged out successfully!");
-                    handleCloseAll();
-                  }}
+                  onClick={handleLogout}
                 >
                   🚪 Logout
                 </button>
@@ -100,14 +98,30 @@ function Header({ title = "The Daily Drape" }) {
           </div>
 
           {/* Cart Icon */}
-          <button
-            type="button"
+          <Link
+            to="/cart"
             className="nav-icon-btn"
             title="Cart"
-            onClick={() => alert("Cart is empty")}
+            onClick={handleCloseAll}
           >
             🛒
-          </button>
+            {cart.length > 0 && (
+              <span
+                style={{
+                  background: "#ff003c",
+                  color: "#fff",
+                  borderRadius: "50%",
+                  fontSize: "11px",
+                  fontWeight: "bold",
+                  padding: "1px 6px",
+                  marginLeft: "4px",
+                  verticalAlign: "top",
+                }}
+              >
+                {cart.length}
+              </span>
+            )}
+          </Link>
         </div>
       </div>
     </nav>

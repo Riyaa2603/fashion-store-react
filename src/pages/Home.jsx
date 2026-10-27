@@ -7,7 +7,7 @@ function Home() {
       id: 1,
       name: "Kids",
       image: "https://i.pinimg.com/736x/e1/04/77/e1047742613d4809539c26b6aa714605.jpg",
-      path: "/",
+      path: "/kids",
     },
     {
       id: 2,
@@ -25,19 +25,18 @@ function Home() {
       id: 4,
       name: "Women",
       image: "https://i.pinimg.com/736x/92/03/86/920386338225079e639ff7825cd4378d.jpg",
-      path: "/",
+      path: "/women",
     },
     {
       id: 5,
       name: "Accessories",
       image: "https://i.pinimg.com/1200x/f7/94/90/f7949041864fed2fdc522fd5e7e2917d.jpg",
-      path: "/",
+      path: "/accessories",
     },
   ];
 
   return (
     <div className="home-page">
-      
       <header className="hero">
         <h1>
           Where style speaks,<br />
