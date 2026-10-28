@@ -15,27 +15,30 @@ function App() {
   const location = useLocation();
   const isLoggedIn = localStorage.getItem("loginStatus") === "true";
 
-  // Hide nav bar and footer on login page or when user is not logged in
-  const showNav = isLoggedIn && location.pathname !== "/login";
-
   return (
     <CartProvider>
       <div className="app-container">
-        {showNav && <Header title="The Daily Drape" />}
+        <Header title="The Daily Drape" />
 
         <Routes>
           <Route path="/login" element={<Login />} />
-          <Route path="/" element={isLoggedIn ? <Home /> : <Navigate to="/login" />} />
-          <Route path="/men" element={isLoggedIn ? <Men /> : <Navigate to="/login" />} />
-          <Route path="/women" element={isLoggedIn ? <Women /> : <Navigate to="/login" />} />
-          <Route path="/kids" element={isLoggedIn ? <Kids /> : <Navigate to="/login" />} />
-          <Route path="/accessories" element={isLoggedIn ? <Accessories /> : <Navigate to="/login" />} />
-          <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+
+          {/* Public routes: anyone can view */}
+          <Route path="/" element={<Home />} />
+          <Route path="/men" element={<Men />} />
+          <Route path="/women" element={<Women />} />
+          <Route path="/kids" element={<Kids />} />
+          <Route path="/accessories" element={<Accessories />} />
+
+          {/* Protected routes: ONLY Cart and Profile require login */}
           <Route path="/cart" element={isLoggedIn ? <Cart /> : <Navigate to="/login" />} />
-          <Route path="*" element={<Navigate to={isLoggedIn ? "/" : "/login"} />} />
+          <Route path="/profile" element={isLoggedIn ? <Profile /> : <Navigate to="/login" />} />
+
+          {/* Catch-all route */}
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
 
-        {showNav && <Footer />}
+        <Footer />
       </div>
     </CartProvider>
   );

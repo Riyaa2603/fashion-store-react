@@ -9,6 +9,8 @@ function Header({ title = "The Daily Drape" }) {
   const [occasionOpen, setOccasionOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
 
+  const isLoggedIn = localStorage.getItem("loginStatus") === "true";
+
   const handleToggleOccasion = () => {
     setOccasionOpen(!occasionOpen);
     setProfileOpen(false);
@@ -73,7 +75,14 @@ function Header({ title = "The Daily Drape" }) {
               type="button"
               className="nav-icon-btn"
               title="Profile"
-              onClick={handleToggleProfile}
+              onClick={() => {
+                if (!isLoggedIn) {
+                  handleCloseAll();
+                  navigate("/login");
+                } else {
+                  handleToggleProfile();
+                }
+              }}
             >
               👤
             </button>
@@ -99,7 +108,7 @@ function Header({ title = "The Daily Drape" }) {
 
           {/* Cart Icon */}
           <Link
-            to="/cart"
+            to={isLoggedIn ? "/cart" : "/login"}
             className="nav-icon-btn"
             title="Cart"
             onClick={handleCloseAll}
