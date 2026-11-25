@@ -110,7 +110,7 @@ function ProductCard({ title, description, price, image, category, fabric, sizes
       size: selectedSize, 
       fabric: clothDescription 
     });
-    alert(`Added "${title}" (Size: ${selectedSize}) to your cart!`);
+    alert(`Added "${title}" to your cart!`);
   };
 
   return (
@@ -165,7 +165,6 @@ function ProductCard({ title, description, price, image, category, fabric, sizes
               <div className="modal-section">
                 <div className="modal-section-title">
                   <span>Select Size:</span>
-                  <span className="selected-size-label">{selectedSize}</span>
                 </div>
                 <div className="size-buttons">
                   {availableSizes.map((size) => (
@@ -198,7 +197,7 @@ function ProductCard({ title, description, price, image, category, fabric, sizes
                   className="modal-add-cart-btn"
                   onClick={handleAddToCart}
                 >
-                  🛒 Add to Cart ({selectedSize})
+                  🛒 Add to Cart
                 </button>
                 <button 
                   type="button" 

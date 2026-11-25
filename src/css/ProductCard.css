@@ -62,13 +62,12 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
-  transition: all 0.2s ease;
+  transition: background 0.2s, border-color 0.2s;
 }
 
 .modal-close-btn:hover {
   background: #ff003c;
   border-color: #ff003c;
-  transform: rotate(90deg);
 }
 
 /* Modal Left: Image */
